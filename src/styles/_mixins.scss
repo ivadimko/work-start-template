@@ -1,0 +1,201 @@
+
+//Fonts mixins
+
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+
+    @if $asset-pipeline == true {
+      src: font-url('#{$file-path}.eot');
+      src: font-url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+      font-url('#{$file-path}.woff') format('woff'),
+      font-url('#{$file-path}.ttf') format('truetype');
+    }
+    @else {
+      src: url('#{$file-path}.eot');
+      src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+      url('#{$file-path}.woff') format('woff'),
+      url('#{$file-path}.ttf') format('truetype');
+    }
+  }
+}
+
+@mixin fontMix($family:$muli, $size: 16px, $weight: 400) {
+   //font: {
+	 // family: $family;
+	 // size: $size;
+	 // weight: $weight;
+   //}
+   
+   font:$weight $size $family;
+   
+}
+
+@mixin textStyle($textT: none, $lineHeight:inherit, $color:inherit,  $textD:none ) {
+   text-transform: $textT;
+   line-height: $lineHeight;
+   color: $color;
+   text-decoration: $textD;
+}
+
+@mixin transition($style:all, $speed:0.2s, $timing:linear) {
+   transition:$style $speed $timing;
+}
+
+@mixin marginBottom {
+   margin-bottom: 120px;
+   
+   @media (max-width:1024px) {
+	  margin-bottom: 110px;
+   }
+   
+   @media (max-width:992px) {
+	  margin-bottom: 90px;
+   }
+   
+   @media (max-width:768px) {
+	  margin-bottom: 80px;
+   }
+   
+   @media (max-width:576px) {
+	  margin-bottom: 60px;
+   }
+   
+}
+
+
+//Fonts mixins
+
+
+//Mixin v2
+
+
+@mixin if-bigger-than($breakpoint-name) {
+   @if map-has-key($breakpoints, $breakpoint-name) {
+	  @media (min-width: #{map-get($breakpoints, $breakpoint-name)}) {
+		 @content;
+	  }
+   }
+}
+
+@mixin if-smaller-than($breakpoint-name) {
+   @if map-has-key($breakpoints, $breakpoint-name) {
+	  @media (max-width: #{map-get($breakpoints, $breakpoint-name)} - 1) {
+		 @content;
+	  }
+   }
+}
+
+@mixin selection ($bg, $text) {
+   ::selection {
+	  background: $bg;
+	  color: $text;
+   }
+}
+
+$arrow-amplitude: 6px;
+@mixin fa-angle-right {
+   &::after {
+	  display: inline-flex;
+	  content: '\f105';
+	  //font-family: "FontAwesome";
+	  transition: .5s;
+	  position: relative;
+	  top: -1px;
+   }
+   &:hover::after {
+	  transform: translateX($arrow-amplitude);
+   }
+}
+
+@mixin fa-angle-left {
+   &::before {
+	  display: inline-flex;
+	  content: '\f104';
+	  //font-family: "FontAwesome";
+	  transition: .5s;
+	  position: relative;
+	  top: -1px;
+   }
+   &:hover::before {
+	  transform: translateX(-$arrow-amplitude);
+   }
+}
+
+@mixin fa-long-arrow-left {
+   //&::before {
+   // content: '';
+   // display: inline-flex;
+   // width: 20px;
+   // height: 5px;
+   // background: url("/images/icons/long-arrow-left.svg");
+   //}
+}
+
+@mixin fa-angle-down {
+   -webkit-backface-visibility: hidden;
+   &::after {
+	  display: inline-flex;
+	  content: '\f107';
+	  font-family: "FontAwesome";
+	  transition: transform .5s;
+	  transform-origin: center center;
+   }
+   &_rotate-180 {
+	  &::after {
+		 transform: rotate3d(1, 0, 0, 180deg);
+	  }
+   }
+}
+
+@mixin justify-content {
+   text-align: justify;
+}
+
+@mixin smooth {
+   transition: .35s;
+}
+
+@mixin image-contain {
+   position: relative;
+   overflow: hidden;
+   > img {
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+   }
+}
+
+@mixin image-cover {
+   @include image-contain;
+   > img {
+	  min-width: 100%;
+	  min-height: 100%;
+   }
+}
+
+@mixin image-fit-width {
+   @include image-contain;
+   > img {
+	  max-width: 100%;
+   }
+}
+
+@mixin covers-parent {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+}
+
+@mixin clearfix {
+   &::after {
+	  content: '';
+	  display: block;
+	  clear: both;
+   }
+}

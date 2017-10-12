@@ -1,0 +1,550 @@
+/* Class for concrete 5 */
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 32px;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.bg-mob {
+  display: none;
+  width: 100%;
+  height: 2000px;
+  background: rgba(#000, 0.2);
+  position: fixed;
+  z-index: 12;
+  left: 0;
+  top: -200px;
+
+  @media (max-width: 576px) {
+    background: rgba(#000, 0.2);
+  }
+}
+
+.ccm-ui {
+  letter-spacing: normal;
+  text-transform: none;
+  .nav {
+    display: block;
+  }
+}
+
+.ccm-page {
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0;
+    line-height: normal;
+    font-weight: 400;
+    &::selection {
+      background: rgba(#9ec73d, 0.7);
+      color: #4a4a4a;
+    }
+  }
+
+  &.edit_mode {
+    .main-header {
+      margin-top: 48px !important;
+    }
+    .main-popup {
+      margin-top: 48px !important;
+    }
+  }
+
+  .max-height {
+    &, & > .grid-x {
+      height: 100%;
+      position: relative;
+    }
+  }
+
+  .float-left {
+    float: left;
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .container-fluid {
+    & .container {
+      padding: 0;
+    }
+  }
+
+  .row {
+    & .container {
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    &:hover, &:active, &:focus {
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  p {
+    @include fontMix();
+    line-height: 26px;
+    text-align: justify;
+    padding: 0;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      @include fontMix($montserrat, 14px, 400);
+      line-height: 24px;
+    }
+
+    a {
+      color: $white;
+      &:hover {
+        text-decoration: underline;
+      }
+      &:active, &:focus, &:visited {
+        color: #BC8859;
+      }
+    }
+  }
+
+  b, strong {
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 44px;
+    line-height: 60px;
+    font-weight: 400;
+    //font-family: $playfair;
+    margin-bottom: 50px;
+
+    @media (max-width: 400px) {
+      line-height: 55px;
+      font: {
+        size: 50px;
+      }
+    }
+
+  }
+
+  h2 {
+    padding: 0;
+    margin: 0;
+    &, & * {
+      line-height: 42px;
+      letter-spacing: 0;
+      font: {
+        size: 32px;
+        weight: 400;
+      }
+      @media (max-width: 768px) {
+        line-height: 36px;
+        font: {
+          size: 26px;
+        }
+      }
+    }
+    position: relative;
+    z-index: 1;
+    &.big-bottom {
+      margin-bottom: 40px;
+    }
+  }
+
+  h3 {
+    //font-family: $playfair;
+    font-size: 30px;
+    line-height: 55px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+
+  .sub-title {
+    @include fontMix($montserrat, 22px, 400);
+    @include textStyle(none, 26px, red);
+
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    font-style: italic;
+
+    @media (max-width: 760px) {
+      margin-bottom: 5px;
+    }
+
+  }
+
+  .parallax-move {
+    position: relative;
+    z-index: 10;
+    opacity: 0.1;
+    pointer-events: none;
+    i {
+      position: absolute;
+      z-index: 20;
+      left: -270px;
+      top: -400px;
+      color: #F8F9FA;
+      font-size: 728px;
+      font-weight: bold;
+    }
+  }
+  .ws-parallax {
+    transition: all 0.3s ease-out;
+  }
+
+  .dialog {
+    text-align: center;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 1;
+    pointer-events: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    transition: opacity 0.2s linear;
+    h2 {
+      padding-bottom: 40px;
+    }
+
+    &_hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  .half-section__absolute {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+
+    @media (max-width: 767px) {
+      position: relative;
+      height: 362px;
+    }
+  }
+
+  *[class*="kAnimation"] {
+    transition: all 500ms ease-out !important;
+  }
+
+  .group-block {
+    width: 100%;
+    max-width: 1920px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .wide-block, .narrow-block {
+    grid-column: 1;
+    grid-row: 1;
+    height: 100%;
+  }
+
+  // Ui elements style start
+
+  .padding-top {
+    padding-top: 30px;
+  }
+
+  .lang-switcher {
+    padding: 0;
+    margin: 0 15px 0 0;
+    list-style: none;
+    display: inline-block;
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 0;
+      margin: 0 15px;
+      a {
+        @include fontMix($montserrat, 10px, 700);
+        @include textStyle(uppercase, 13px, #343434);
+        @include transition(opacity);
+
+        opacity: 0.4;
+      }
+      &.active, &:hover {
+        a {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .btn {
+    @include fontMix($montserrat, 12px, 700);
+    @include textStyle(uppercase, 15px, #fff);
+    @include transition(all, 0.2s, linear);
+
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+
+    &__arrow {
+      @extend .btn;
+
+      padding: 17px 49px;
+      background: $darkText;
+
+      i {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 6px;
+        vertical-align: top;
+        line-height: 15px;
+      }
+
+      &:hover {
+        background: $white;
+      }
+      &:active, &:focus {
+        background: $black;
+      }
+    }
+
+    &__small {
+      @extend .btn;
+      padding: 12px 20px;
+      background: $white;
+      &:hover {
+        background: $darkText;
+      }
+      &:active, &:focus {
+        background: $black;
+      }
+
+      &-light {
+        @extend .btn;
+        padding: 11px 19px;
+        border: 1px solid $white;
+        background: #fff;
+        color: $white;
+        &:hover {
+          background: $white;
+          color: #fff;
+        }
+        &:active, &:focus {
+          background: #AA9D8F;
+          border-color: #AA9D8F;
+          color: #fff;
+        }
+      }
+    }
+
+    &__reservation {
+      @extend .btn;
+      padding: 12px 20px;
+      background: $white;
+      transform: rotate(-90deg);
+      transform-origin: center center;
+
+      &:hover {
+        background: $darkText;
+      }
+      &:active, &:focus {
+        background: $black;
+      }
+    }
+  }
+
+  .fixed-social {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li {
+      width: 40px;
+      height: 40px;
+      line-height: 0;
+      font-size: 0;
+      background: #C1C1C1;
+      text-align: center;
+      a {
+        &, i {
+          display: block;
+          width: 100%;
+          height: 100%;
+          color: #fff;
+          font-size: 12px;
+          text-align: center;
+          line-height: 40px;
+          transition: all 200ms linear;
+        }
+
+        i {
+          &[class*='Facebook'] {
+            background: #4460A0;
+          }
+          &[class*='Google'] {
+            background: #E24733;
+          }
+          &[class*='Tripadvisor'] {
+            background: #00af87;
+          }
+          &[class*='Instagram'] {
+            font-size: 14px;
+            background: #ffd700;
+            background: -moz-linear-gradient(25deg, #ffd700 0%, #fc4a00 33%, #d7005f 66%, #bb00b6 100%);
+            background: -webkit-linear-gradient(25deg, #ffd700 0%, #fc4a00 33%, #d7005f 66%, #bb00b6 100%);
+            background: linear-gradient(25deg, #ffd700 0%, #fc4a00 33%, #d7005f 66%, #bb00b6 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd700', endColorstr='#bb00b6', GradientType=1);
+            &:hover {
+              color: #4B2502;
+              background: #E0D9CC;
+              background: -moz-linear-gradient(25deg, #E0D9CC 0%, #E0D9CC 33%, #E0D9CC 66%, #E0D9CC 100%);
+              background: -webkit-linear-gradient(25deg, #E0D9CC 0%, #E0D9CC 33%, #E0D9CC 66%, #E0D9CC 100%);
+              background: linear-gradient(25deg, #E0D9CC 0%, #E0D9CC 33%, #E0D9CC 66%, #E0D9CC 100%);
+              filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E0D9CC', endColorstr='#E0D9CC', GradientType=1);
+            }
+          }
+
+          &:hover {
+            background: #E0D9CC;
+            color: #4B2502;
+          }
+        }
+      }
+    }
+  }
+
+  .btn-cover {
+    display: inline-block;
+    text-align: center;
+    margin-top: 60px;
+    a {
+      @extend .btn;
+      @include fontMix($montserrat, 15px, 700);
+      @include textStyle(uppercase, 26px, #fff);
+      @include transition(all, 0.2s, linear);
+
+      display: inline-block;
+      border: 2px solid #fff;
+      padding: 10px 40px;
+
+      &:hover {
+        background: $white;
+        border-color: $white;
+        color: #fff;
+      }
+      &:active, &:focus {
+        background: #AA9D8F;
+        border-color: #AA9D8F;
+        color: #fff;
+      }
+    }
+  }
+
+  .social-wrap {
+    a {
+      display: inline-block;
+      margin-right: 22px;
+      color: $white;
+      @include transition();
+      &:hover, &:focus, &:active {
+        color: #E1DACC;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @media (max-width: 500px) {
+        margin-right: 19px;
+      }
+    }
+  }
+
+  .arrow-top {
+    position: absolute;
+    right: 0;
+    top: -25px;
+    width: 50px;
+    height: 50px;
+    background: $white;
+    color: #fff;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      top: -20px;
+      width: 40px;
+      height: 40px;
+    }
+
+    &:hover {
+      i {
+        transform: translateY(-3px);
+      }
+    }
+
+    i {
+      display: inline-block;
+      line-height: 48px;
+      font-size: 8px;
+      transition: transform 0.2s linear;
+      @media (max-width: 768px) {
+        line-height: 39px;
+      }
+    }
+  }
+
+  .right-red {
+    text-align: right;
+    @include fontMix($montserrat, 10px, 400);
+    @include textStyle(uppercase, 16px, red);
+    letter-spacing: 1px;
+  }
+
+  .half-bg {
+    width: 120%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background: rgba(#fff, 1);
+    //transition:width 0.2s ease-out;
+    visibility: visible !important;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    animation-duration: 1.2s;
+  }
+
+  // Ui elements style end
+
+}
+#scroll-top{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Class for concrete 5 */
